@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+
 import Board from "@/components/Board";
+import Game from "@/components/Game";
 
 import Link from "next/link";
-
 import localFont from "next/font/local"
 import { Poppins } from 'next/font/google'
 import { cn } from "@/lib/utils";
@@ -32,28 +33,12 @@ export default function Home() {
         <Button variant={"outline"} asChild>
           <Link href="https://github.com/Jay-Karia/ultra-tic" target="_blank">
             <GitHubLogoIcon className="w-4 h-4 mr-2" />
-            GitHub
+            Source Code
           </Link>
         </Button>
       </div>
 
-      <div className="flex flex-col">
-        <div className="">
-          Turn: X
-        </div>
-
-        <div className="grid grid-cols-3 grid-rows-3 border border-black">
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-        </div>
-      </div>
+      <Game />
     </div>
   );
 }
