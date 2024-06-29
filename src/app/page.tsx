@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import Board from "@/components/Board";
 
 import Link from "next/link";
 
@@ -18,7 +19,7 @@ const textFont = Poppins({
 
 export default function Home() {
   return (
-    <div className="w-full h-full flex flex-col items-center py-10 space-y-12">
+    <div className="w-full h-full flex flex-col items-center py-6 space-y-4">
       <div className="flex flex-col items-center space-y-5 w-full">
 
         <h2 className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center", headingFont.className)}>
@@ -36,9 +37,22 @@ export default function Home() {
         </Button>
       </div>
 
-      <div className="flex justify-center w-full">
-        {/* Game Board */}
-        Game board
+      <div className="flex flex-col">
+        <div className="">
+          Turn: X
+        </div>
+
+        <div className="grid grid-cols-3 grid-rows-3 border border-black">
+          <Board />
+          <Board />
+          <Board />
+          <Board />
+          <Board />
+          <Board />
+          <Board />
+          <Board />
+          <Board />
+        </div>
       </div>
     </div>
   );

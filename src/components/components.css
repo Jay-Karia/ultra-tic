@@ -1,0 +1,3 @@
+.board-square {
+    @apply p-6 flex items-center hover:bg-slate-100 hover:cursor-pointer;
+}
