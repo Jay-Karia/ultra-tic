@@ -6,17 +6,19 @@ import { Cross1Icon } from "@radix-ui/react-icons"
 import { CircleIcon } from "@radix-ui/react-icons"
 import { BoardValue, Turn } from "@/types/board"
 import { useState } from "react"
+import { cn } from "@/lib/utils"
 
 interface Board {
     value: BoardValue,
     turn: Turn,
     boardIndex: number,
     outerBoard: BoardValue[],
+    disable: boolean,
     setTurn: (turn: Turn) => void,
     setWinner: (winner: BoardValue[]) => void
 }
 
-export default function Board({ value, turn, boardIndex, setTurn, setWinner, outerBoard }: Board) {
+export default function Board({ value, turn, boardIndex, setTurn, setWinner, outerBoard, disable }: Board) {
 
     const cross: JSX.Element = <Cross1Icon className="text-red-500 h-6 w-6" />
     const circle: JSX.Element = <CircleIcon className="text-red-500 h-6 w-6" />
@@ -42,7 +44,6 @@ export default function Board({ value, turn, boardIndex, setTurn, setWinner, out
         // Check each winning combination
         for (const combination of winningCombinations) {
             const [a, b, c] = combination;
-            console.log(board[a], board[b], board[c])
             if (board[a] && board[a] === board[b] && board[a] === board[c]) {
                 winner = turn
             }
@@ -61,9 +62,11 @@ export default function Board({ value, turn, boardIndex, setTurn, setWinner, out
         if (board.every((box) => box !== null)) {
             setBoard([null, null, null, null, null, null, null, null, null])
         }
-     }
+    }
 
     function handleClick(boxIndex: number) {
+        if (disable) return
+
         if (board[boxIndex] === null) {
 
             const newBoard = [...board]
@@ -91,7 +94,9 @@ export default function Board({ value, turn, boardIndex, setTurn, setWinner, out
                 <>
                     <div className="grid grid-cols-3 grid-rows-3 aspect-square border border-black">
                         {board.map((box, boxIndex) => (
-                            <div key={boxIndex} className="board-square border" onClick={() => handleClick(boxIndex)}>
+                            <div key={boxIndex} className={cn("border p-6", {
+                                "board-square": !disable,
+                            })} onClick={() => handleClick(boxIndex)}>
                                 {box === 2 ? circle : box === 1 ? cross : empty}
                             </div>
                         ))}
