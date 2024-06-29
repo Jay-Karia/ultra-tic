@@ -7,7 +7,7 @@ import { BoardValue, Turn } from "@/types/board";
 export default function Game() {
 
     const [board, setBoard] = useState<BoardValue[]>([null, null, null, null, null, null, null, null, null]);
-    const [turn, setTurn] = useState<Turn>(0)
+    const [turn, setTurn] = useState<Turn>(2)
 
     return (
 
@@ -19,9 +19,7 @@ export default function Game() {
 
             <div className="grid grid-cols-3 grid-rows-3 border border-black">
                 {board.map((row, boardIndex) => (
-                    <>
-                        <Board value={board[boardIndex]} turn={turn} boardIndex={boardIndex} setTurn={setTurn} setWinner={setBoard} outerBoard={board}/>
-                    </>
+                    <Board key={boardIndex} value={board[boardIndex]} turn={turn} boardIndex={boardIndex} setTurn={setTurn} setWinner={setBoard} outerBoard={board} />
                 ))}
             </div>
         </div>
