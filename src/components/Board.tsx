@@ -13,7 +13,7 @@ interface Board {
     turn: Turn,
     boardIndex: number,
     outerBoard: BoardValue[],
-    disable: boolean,
+    disable: BoardValue,
     reset: boolean,
     setTurn: (turn: Turn) => void,
     setWinner: (winner: BoardValue[]) => void,

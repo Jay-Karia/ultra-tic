@@ -4,14 +4,16 @@ import { Button } from "./ui/button"
 interface Actions {
     turn: Turn,
     setBoard: (board: BoardValue[]) => void,
-    setReset: (reset: boolean) => void
+    setReset: (reset: boolean) => void,
+    setWinner: (winner: BoardValue) => void
 }
 
-export default function Actions({ turn, setBoard, setReset }: Actions) {
+export default function Actions({ turn, setBoard, setReset, setWinner }: Actions) {
 
     const handleReset = () => {
         setBoard([null, null, null, null, null, null, null, null, null])
         setReset(true)
+        setWinner(null)
     }
 
     return (
