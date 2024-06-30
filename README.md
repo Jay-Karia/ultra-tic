@@ -3,7 +3,8 @@
 Achieve a three-in-a-row victory across multiple nested 3x3 grids within a larger board.
 
 ### 🎥 Demo
-<video src="/public/ultra tic demo.mp4"></video>
+View the demo [here](/public/ultra%20tic%20demo.mp4)
+
 
 ### 📦 Setup
 - Clone the repo
