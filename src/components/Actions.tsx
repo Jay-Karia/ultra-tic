@@ -3,10 +3,17 @@ import { Button } from "./ui/button"
 
 interface Actions {
     turn: Turn,
-    setBoard: (board: BoardValue[]) => void
+    setBoard: (board: BoardValue[]) => void,
+    setReset: (reset: boolean) => void
 }
 
-export default function Actions({ turn, setBoard }: Actions) {
+export default function Actions({ turn, setBoard, setReset }: Actions) {
+
+    const handleReset = () => {
+        setBoard([null, null, null, null, null, null, null, null, null])
+        setReset(true)
+    }
+
     return (
         <div className="flex justify-between mb-2">
 
@@ -14,7 +21,7 @@ export default function Actions({ turn, setBoard }: Actions) {
                 Turn: {turn === 1 ? 'X' : 'O'}
             </div >
 
-            <Button onClick={() => { setBoard([null, null, null, null, null, null, null, null, null]) }}>
+            <Button onClick={() => handleReset()}>
                 Reset
             </Button>
         </div>

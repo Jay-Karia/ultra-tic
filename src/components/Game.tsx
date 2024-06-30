@@ -10,6 +10,7 @@ export default function Game() {
     const [board, setBoard] = useState<BoardValue[]>([null, null, null, null, null, null, null, null, null]);
     const [turn, setTurn] = useState<Turn>(2)
     const [winner, setWinner] = useState<boolean>(false)
+    const [reset, setReset] = useState<boolean>(false)
 
     function checkWinner(board: BoardValue[]): number[] | null{
         const winningCombinations = [
@@ -45,11 +46,11 @@ export default function Game() {
 
         <div className="flex flex-col">
 
-            <Actions turn={turn} setBoard={setBoard}/>
+            <Actions turn={turn} setBoard={setBoard} setReset={setReset}/>
 
             <div className="grid grid-cols-3 grid-rows-3 border border-black">
                 {board.map((row, boardIndex) => (
-                    <Board key={boardIndex} value={board[boardIndex]} turn={turn} boardIndex={boardIndex} setTurn={setTurn} setWinner={setBoard} outerBoard={board} disable={winner}/>
+                    <Board key={boardIndex} value={board[boardIndex]} turn={turn} boardIndex={boardIndex} setTurn={setTurn} setWinner={setBoard} outerBoard={board} disable={winner} reset={reset} setReset={setReset}/>
                 ))}
             </div>
         </div>

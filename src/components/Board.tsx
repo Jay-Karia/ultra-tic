@@ -5,7 +5,7 @@ import "@/components/components.css"
 import { Cross1Icon } from "@radix-ui/react-icons"
 import { CircleIcon } from "@radix-ui/react-icons"
 import { BoardValue, Turn } from "@/types/board"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
 interface Board {
@@ -14,11 +14,13 @@ interface Board {
     boardIndex: number,
     outerBoard: BoardValue[],
     disable: boolean,
+    reset: boolean,
     setTurn: (turn: Turn) => void,
-    setWinner: (winner: BoardValue[]) => void
+    setWinner: (winner: BoardValue[]) => void,
+    setReset: (reset: boolean) => void
 }
 
-export default function Board({ value, turn, boardIndex, setTurn, setWinner, outerBoard, disable }: Board) {
+export default function Board({ value, turn, boardIndex, setTurn, setWinner, outerBoard, disable, reset, setReset }: Board) {
 
     const cross: JSX.Element = <Cross1Icon className="text-red-500 h-6 w-6" />
     const circle: JSX.Element = <CircleIcon className="text-red-500 h-6 w-6" />
@@ -80,6 +82,14 @@ export default function Board({ value, turn, boardIndex, setTurn, setWinner, out
 
         }
     }
+
+    useEffect(() => {
+      if (reset) {
+          setBoard([null, null, null, null, null, null, null, null, null])
+          setReset(false)
+      }
+    })
+    
 
     return (
         <div>
