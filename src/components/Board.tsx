@@ -2,12 +2,12 @@
 
 import "@/components/components.css"
 
-import { Cross1Icon } from "@radix-ui/react-icons"
-import { CircleIcon } from "@radix-ui/react-icons"
 import { BoardValue, Turn } from "@/types/board"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 import checkWin from "@/lib/checkWin"
+import Circle from "./icons/Circle"
+import Cross from "./icons/Cross"
 
 interface Board {
     value: BoardValue,
@@ -23,8 +23,6 @@ interface Board {
 
 export default function Board({ value, turn, boardIndex, setTurn, setWinner, outerBoard, disable, reset, setReset }: Board) {
 
-    const cross: JSX.Element = <Cross1Icon className="text-red-500 h-6 w-6" />
-    const circle: JSX.Element = <CircleIcon className="text-red-500 h-6 w-6" />
     const empty: JSX.Element = <div className="h-6 w-6"></div>
 
     const [board, setBoard] = useState<BoardValue[]>([null, null, null, null, null, null, null, null, null])
@@ -68,30 +66,32 @@ export default function Board({ value, turn, boardIndex, setTurn, setWinner, out
     }
 
     useEffect(() => {
-      if (reset) {
-          setBoard([null, null, null, null, null, null, null, null, null])
-          setReset(false)
-      }
+        if (reset) {
+            setBoard([null, null, null, null, null, null, null, null, null])
+            setReset(false)
+        }
     })
-    
+
 
     return (
         <div>
             {value !== null ? (
                 <div className="flex items-center justify-center h-full border border-black">
                     {value === 2 ?
-                        <CircleIcon className="text-red-500 h-20 w-20" /> :
-                        <Cross1Icon className="text-red-500 h-20 w-20" />
+                        <Circle size={"large"} /> :
+                        <Cross size={"large"} />
                     }
                 </div>
             ) : (
                 <>
                     <div className="grid grid-cols-3 grid-rows-3 aspect-square border border-black">
                         {board.map((box, boxIndex) => (
-                            <div key={boxIndex} className={cn("border p-6", {
+                            <div key={boxIndex} className={cn("border sm:p-6 p-2", {
                                 "board-square": !disable,
                             })} onClick={() => handleClick(boxIndex)}>
-                                {box === 2 ? circle : box === 1 ? cross : empty}
+                                {box === 2 ?
+                                    <Circle size={"small"} />
+                                    : box === 1 ? <Cross size={"small"} /> : empty}
                             </div>
                         ))}
                     </div>

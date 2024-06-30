@@ -20,7 +20,7 @@ const textFont = Poppins({
 
 export default function Home() {
   return (
-    <div className="w-full h-full flex flex-col items-center py-6 space-y-4">
+    <div className="w-full h-full flex flex-col items-center py-6">
       <div className="flex flex-col items-center space-y-5 w-full">
 
         <h2 className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center", headingFont.className)}>

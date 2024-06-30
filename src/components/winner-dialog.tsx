@@ -24,10 +24,10 @@ export default function WinnerDialog({ winner }: WinnerDialogProps) {
     return (
         <>
             <Dialog open={open}>
-                <DialogContent className="sm:max-w-md">
+                <DialogContent className="sm:max-w-md flex flex-col items-center">
                     <DialogHeader>
-                        <DialogTitle>Winner</DialogTitle>
-                        <DialogDescription>
+                        <DialogTitle className="text-center">Winner</DialogTitle>
+                        <DialogDescription className="flex flex-col w-full items-center">
                             {winner ? (winner == 2 ?
                                 <CircleIcon className="text-red-500 h-6 w-6" /> :
                                 <Cross1Icon className="text-red-500 h-6 w-6" />

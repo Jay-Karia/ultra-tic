@@ -31,7 +31,7 @@ export default function Game() {
 
     return (
 
-        <div className="flex flex-col">
+        <div className="flex flex-col mx-4 sm:mt-6 mt-20">
 
             <Actions turn={turn} setBoard={setBoard} setReset={setReset} setWinner={setWinner}/>
 
