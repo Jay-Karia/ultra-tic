@@ -24,8 +24,6 @@ export default function Game() {
     useEffect(() => {
         const winner = checkWin(board)
         setWinner(winner)
-        if(!winner)
-        checkDraw(board)
     })
 
 
